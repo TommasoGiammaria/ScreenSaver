@@ -5,9 +5,9 @@ from typing import Dict, List, Tuple, Union
 from pygame import Vector2
 
 """
-This module contains simple functions to generate random curves inside a circle.
-The curves can be of three different types (0, 1, 2).
-The program can be used to generate random patterns that can be used as background for other projects.
+This module contains simple functions to draw curves with pygame.
+The curves are tuples of points, and the curves are drawn as straight lines between the points.
+The class is meant to be used with the tuples of points created with the Curve_generator class.
 """
 
 
