@@ -56,7 +56,7 @@ def isin_circle(
 
 class Curve_generator:
     """
-    Class to draw curves inside a circle
+    Class to generate curves inside a circle
     """
     def __init__(
             self,            
@@ -65,26 +65,6 @@ class Curve_generator:
         ):
         self.screen_center = screen_center
         self.circle_radius = circle_radius
-        self.segment_counter = 0
-        self.tracked_length = 0.0
-        
-
-    def draw_segment(
-            self,
-            points : Tuple[Vector2, Vector2] = (Vector2(0, 0), Vector2(0, 0)),
-            color : str = 'white',
-            line_width : int = 1,
-            screen : pygame.Surface = None
-        ) -> None:
-        """
-        draw a single (straight) segment
-        """
-        self.segment_counter += 1
-        self.tracked_length += math.sqrt((points[1].x - points[0].x)**2 + (points[1].y - points[0].y)**2)
-        if line_width == 1:
-            pygame.draw.aaline(screen, color, points[0], points[1])
-        else:
-            pygame.draw.line(screen, color, points[0], points[1], width = line_width)
 
 
     def generate_circle(
