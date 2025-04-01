@@ -2,9 +2,61 @@
 import sys, pygame, time, math, random
 from pygame import Vector2
 from scr.curve_utils import *
+from scr.draw_utilities import *
 
-# os.environ['SDL_VIDEO_CENTERED'] = '1'
-pygame.init()
+
+black = 0, 0, 0
+white = 255, 255, 255
+red = 255, 0, 0
+green = 0, 255, 0
+blue = 0, 0, 255
+yellow = 255, 255, 0
+cyan = 0, 255, 255
+magenta = 255, 0, 255
+gray = 128, 128, 128
+dark_gray = 64, 64, 64
+light_gray = 192, 192, 192
+
+class Game_engine:
+    """
+    Class to handle the pygame display and the game loop
+    """
+    
+
+    def __init__(
+            self,
+            screen_size : Vector2 = None,
+            circle_radius : int = None,
+            circle_width : int = 5
+        ):
+
+        # os.environ['SDL_VIDEO_CENTERED'] = '1'
+        pygame.init()
+                
+        info = pygame.display.Info()
+        self.screen_size = Vector2(info.current_w, info.current_h)
+
+        if screen_size is not None: 
+            self.screen_size = screen_size
+
+        self.screen_center = screen_size // 2
+        self.circle_radius = info.current_h // 2 - 10
+
+        if circle_radius is not None:
+            self.circle_radius = circle_radius
+    
+        self.circle_width = circle_width
+        self.curve_drawer = Curve_drawer()
+        self.curve_generator = Curve_generator( self.screen_center, self.circle_radius )
+
+        
+        static_screen = pygame.display.set_mode(screen_size)
+        dynamic_screen = pygame.display.set_mode(screen_size)
+
+
+
+
+
 
 
 info = pygame.display.Info()
