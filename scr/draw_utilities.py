@@ -16,6 +16,11 @@ class Curve_drawer:
     """
     Class to draw curves inside a circle
     """
+    default_segment_parameters = {
+        'color'         : "white",
+        'line_width'    : 1
+    }
+    
     def __init__(
             self,
         ):
@@ -33,8 +38,7 @@ class Curve_drawer:
     def draw_segment(
             self,
             points : Tuple[Vector2, Vector2] = (Vector2(0, 0), Vector2(1, 1)),
-            color : str = 'white',
-            line_width : int = 1,
+            segment_params = default_segment_parameters,
             screen : pygame.Surface = None
         ) -> None:
         """
@@ -42,21 +46,22 @@ class Curve_drawer:
         """
         self.segment_counter += 1
         self.tracked_length += math.sqrt((points[1].x - points[0].x)**2 + (points[1].y - points[0].y)**2)
-        if line_width == 1:
-            pygame.draw.aaline(screen, color, points[0], points[1])
+        if segment_params['line_width'] == 1:
+            pygame.draw.aaline(screen, segment_params['color'], points[0], points[1])
         else:
-            pygame.draw.line(screen, color, points[0], points[1], width = line_width)
+            pygame.draw.line(screen, segment_params['color'], points[0], points[1], width = segment_params['line_width'])
 
 
 
     def draw_curve(
             self,
             points : Tuple[Vector2] = (Vector2(0, 0), Vector2(1, 1), Vector2(2, 2)),
-            **kwargs
+            segment_params = default_segment_parameters,
+            screen : pygame.Surface = None
         ) -> None:
         """
         draw a single curve, kwargs are passed to draw_segment as keyword arguments
         """
         for i in range(len(points)-2):
-            self.draw_segment((points[i], points[i+1]), **kwargs)
+            self.draw_segment((points[i], points[i+1]), segment_params, screen)
 

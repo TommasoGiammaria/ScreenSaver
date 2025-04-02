@@ -58,6 +58,22 @@ class Curve_generator:
     """
     Class to generate curves inside a circle
     """
+    default_general_params = {
+        'starting_point'        : Vector2(0, 0),
+        'starting_direction'    : 0,
+        'left_right'            : -1,
+    }
+    default_circle_params = {
+        'deflection'                    : 1,
+        'displacement_deflection_ratio' : 2,
+        'n_steps'                       : 2
+    }
+    default_ellipse_params = {
+        'max_deflection'        : 1,
+        'displacement_range'    : (1, 4, 1),
+        'closed'                : True
+    }
+
     def __init__(
             self,            
             screen_center : Vector2 = Vector2(0,0),
@@ -69,16 +85,8 @@ class Curve_generator:
 
     def generate_circle(
             self,
-            gen_params : Dict[str, Union[Vector2, int]] = {        
-                'starting_point'        : Vector2(0, 0),
-                'starting_direction'    : 0,
-                'left_right'            : -1,
-            },
-            curve_params : Dict[str, int] = {
-                'deflection'                    : 1,
-                'displacement_deflection_ratio' : 2,
-                'n_steps'                       : 2,
-            }
+            gen_params : Dict[str, Union[Vector2, int]] = default_general_params,
+            curve_params : Dict[str, int] = default_circle_params
         ) -> Dict[str, Union[Tuple[int], int]]:
         """
         draws an arc of a circle, starting from a point and pointing to a direction.
@@ -119,16 +127,8 @@ class Curve_generator:
 
     def generate_ellipse(
             self,
-            gen_params : Dict[str, Union[Vector2, int]] = {        
-                'starting_point'        : Vector2(0, 0),
-                'starting_direction'    : 0,
-                'left_right'            : -1,
-            },
-            curve_params : Dict[str, Union[Tuple[int, int, int], int, bool]] = {
-                'max_deflection'        : 1,
-                'displacement_range'    : (1, 4, 1),
-                'closed'                : True
-            }
+            gen_params : Dict[str, Union[Vector2, int]] = default_general_params,
+            curve_params : Dict[str, Union[Tuple[int, int, int], int, bool]] = default_ellipse_params
         ) -> Dict[str, Union[Tuple[int], int]]:
         """
         draw an elliptical (? I have to do some math... ) arc, similar to circle but with different curve_params dict.
@@ -206,16 +206,8 @@ class Curve_generator:
             self,
             randomgen = False,
             name = 'circle',
-            general_parameters = {        
-                'starting_point'        : Vector2(0, 0),
-                'starting_direction'    : 0,
-                'left_right'            : -1,
-            },
-            curve_parameters = {
-                'max_deflection'        : 1,
-                'displacement_range'    : (1, 4, 1),
-                'closed'                : True
-            }
+            general_parameters = default_general_params,
+            curve_parameters = default_circle_params
         ) -> Dict[str, Union[Tuple[int], int]]:
         """
         this function is a general drawing method, choose the function with the "name" variable
