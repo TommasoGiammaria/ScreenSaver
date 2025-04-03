@@ -100,7 +100,7 @@ class Curve_generator:
         starting_point = gen_params['starting_point']
         next_point = gen_params['starting_point']
         direction = gen_params['starting_direction']
-        curve_points = (starting_point, )
+        curve_points = (starting_point,)
         
         for i in range(curve_params['n_steps']):
             if isin_circle(self.screen_center, self.circle_radius, next_point):

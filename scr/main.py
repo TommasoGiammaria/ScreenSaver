@@ -178,30 +178,29 @@ class Game_engine:
         curve_points = curve_info['points']
         # end_direction = curve_info['end_direction']
 
-        if self.drawing_parameters['strobo']:
-            # if strobo mode is True, draw the curve in segments
-            for point_index in range(len(curve_points)-1):
-                self.curve_drawer.draw_segment(
-                    (curve_points[point_index], curve_points[point_index+1]),
-                    self.drawing_parameters['segment_params'],
-                    self.dynamic_screen
-                )
-                self.update_display(blit_screen = True, draw_circle = False)
-                time.sleep(0.01)
-
-                # reset the screen each time we reach the strobo_tail number of segments
-                if self.curve_drawer.segment_counter > self.drawing_parameters['strobo_tail']:
-                    self.curve_drawer.reset()
-                    self.static_screen.fill(black)
-                    self.update_display(blit_screen = False, draw_circle = True)
-
-        else:
-            # draw the whole curve at once if not strobo mode
-            self.curve_drawer.draw_curve(
-                curve_points,
+        # if strobo mode is True, draw the curve in segments
+        for point_index in range(len(curve_points)-1):
+            self.curve_drawer.draw_segment(
+                (curve_points[point_index], curve_points[point_index+1]),
                 self.drawing_parameters['segment_params'],
                 self.dynamic_screen
             )
+            self.update_display(blit_screen = True, draw_circle = False)
+            time.sleep(0.05)
+
+            # reset the screen each time we reach the strobo_tail number of segments
+            if self.curve_drawer.segment_counter > self.drawing_parameters['strobo_tail'] and self.drawing_parameters['strobo']:
+                self.curve_drawer.reset()
+                self.static_screen.fill(black)
+                self.update_display(blit_screen = False, draw_circle = True)
+
+        # else:
+        #     # draw the whole curve at once if not strobo mode
+        #     self.curve_drawer.draw_curve(
+        #         curve_points,
+        #         self.drawing_parameters['segment_params'],
+        #         self.dynamic_screen
+        #     )
 
         time.sleep(0.01)        
         self.update_display(blit_screen = True, draw_circle = True)
