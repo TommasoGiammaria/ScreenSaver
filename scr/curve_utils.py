@@ -95,12 +95,12 @@ class Curve_generator:
         The length of the arc is defined by the number of steps (n_steps key).
         Returns the curve points and the end direction.
         """
-        curve_points = (starting_point)
         deflection = gen_params['left_right']*curve_params['deflection']
         displacement_deflection_ratio = curve_params['displacement_deflection_ratio']
         starting_point = gen_params['starting_point']
         next_point = gen_params['starting_point']
         direction = gen_params['starting_direction']
+        curve_points = (starting_point, )
         
         for i in range(curve_params['n_steps']):
             if isin_circle(self.screen_center, self.circle_radius, next_point):

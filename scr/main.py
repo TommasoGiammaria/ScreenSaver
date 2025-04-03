@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import sys, pygame, time, math, random
 from pygame import Vector2
-from scr.curve_utils import *
-from scr.draw_utilities import *
+from curve_utils import *
+from draw_utilities import *
 
 
 black = 0, 0, 0
@@ -42,7 +42,7 @@ class Game_engine:
         if screen_size is not None: 
             self.screen_size = screen_size
 
-        self.screen_center = screen_size // 2
+        self.screen_center = self.screen_size // 2
         self.circle_radius = info.current_h // 2 - 10
 
         if circle_radius is not None:
@@ -53,8 +53,8 @@ class Game_engine:
         self.curve_generator = Curve_generator( self.screen_center, self.circle_radius )
 
         
-        self.static_screen= pygame.display.set_mode(screen_size)
-        self.dynamic_screen = pygame.display.set_mode(screen_size)
+        self.static_screen= pygame.display.set_mode(self.screen_size)
+        self.dynamic_screen = pygame.display.set_mode(self.screen_size)
 
         if fullscreen:
             pygame.display.toggle_fullscreen()
@@ -253,7 +253,7 @@ class Game_engine:
 
                 
             self.curve_parameters['general_parameters']['starting_point'] = starting_point
-            self.curve_parameters['starting_direction']['starting_direction'] = direction
+            self.curve_parameters['general_parameters']['starting_direction'] = direction
 
             endpoint = self.generate_single_curve(randomgen = True)
 
@@ -262,9 +262,9 @@ class Game_engine:
             if toward_circle_center > 360: toward_circle_center -= 360
                 
             self.curve_parameters['general_parameters']['starting_point'] = endpoint
-            self.curve_parameters['starting_direction']['starting_direction'] = toward_circle_center
+            self.curve_parameters['general_parameters']['starting_direction'] = toward_circle_center
 
-            
+            time.sleep(0.5)
 
 
             # inside_circle = True
@@ -316,6 +316,15 @@ class Game_engine:
             # else: pygame.draw.circle(surface = screen, color = background_color, center = screen_center, radius = circle_radius + 2000, width = 2000)
             
             # pygame.display.flip()
+
+
+
+if __name__ == "__main__":
+    game = Game_engine()
+    game.initialize_screen()
+    game.mainloop()
+    
+
 
 
 # info = pygame.display.Info()
