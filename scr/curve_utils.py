@@ -39,6 +39,8 @@ def point_in_circle(
     return the coordinates of a point inside a circle given the center, the radius and the angle.
     This would be the polar coordinates of the point (i.e. the inverse transformation w.r.t. the previous function)
     """
+    
+    # print(f'Point in circle:\nCenter = {center},next point = {center + Vector2.from_polar((radius, -angle))}')
     return center + Vector2.from_polar((radius, -angle))
 
 
@@ -50,7 +52,7 @@ def isin_circle(
     """
     check if a point is inside a circle of certain radius and center
     """
-    return (center.x - point_position.x)**2 + (center.y - point_position.y)**2 < radius**2
+    return (center.x - point_position.x)**2 + (center.y - point_position.y)**2 <= radius**2
 
 
 
@@ -77,7 +79,7 @@ class Curve_generator:
     def __init__(
             self,            
             screen_center : Vector2 = Vector2(0,0),
-            circle_radius : float = 0.
+            circle_radius : int = 712
         ):
         self.screen_center = screen_center
         self.circle_radius = circle_radius
@@ -95,15 +97,19 @@ class Curve_generator:
         The length of the arc is defined by the number of steps (n_steps key).
         Returns the curve points and the end direction.
         """
+        # if type(gen_params['starting_point'] != Vector2): print(gen_params['starting_point'])
         deflection = gen_params['left_right']*curve_params['deflection']
         displacement_deflection_ratio = curve_params['displacement_deflection_ratio']
         starting_point = gen_params['starting_point']
-        next_point = gen_params['starting_point']
+        # next_point = gen_params['starting_point']
         direction = gen_params['starting_direction']
         curve_points = (starting_point,)
         
+        # print(f"type (First curve point from curvedict): {type(starting_point)}")
+        # print(f"list type (First curve point from curvedict): {type(curve_points)}")
+        
         for i in range(curve_params['n_steps']):
-            if isin_circle(self.screen_center, self.circle_radius, next_point):
+            if isin_circle(self.screen_center, self.circle_radius, starting_point):
                 direction += deflection
 
                 next_point = point_in_circle(
@@ -148,16 +154,19 @@ class Curve_generator:
         min_displacement = curve_params['displacement_range'][0]
         delta_displacement = curve_params['displacement_range'][2]
         starting_point = gen_params['starting_point']
-        next_point = gen_params['starting_point']
+        # next_point = gen_params['starting_point']
         direction = gen_params['starting_direction']
-
-
         counter = 0
-        curve_points = (starting_point)
+        curve_points = (starting_point, )
+        
+        # print(f"type (First curve point from curvedict): {type(starting_point)}")
+        # print(f"list type (First curve point from curvedict): {type(curve_points)}")
+
+
         single_displacement = starting_displacement
         while single_displacement > min_displacement and deflection < max_deflection:
             single_displacement -= delta_displacement
-            if isin_circle( self.screen_center, self.circle_radius, next_point):
+            if isin_circle( self.screen_center, self.circle_radius, starting_point):
                 deflection += 1
                 counter += 1
                 direction += gen_params['left_right']*deflection
@@ -214,6 +223,8 @@ class Curve_generator:
         If "randomgen" is True, then the function will generate random parameters for the curve (and ignore the rest of the arguments)
         The curve is generated as a set of VEctor2 points, but it is NOT drawn.
         """
+
+        # print(f"type (First curve point from curvedict): {type(general_parameters['starting_point'])}")
         random_circle_params = {
             'deflection'                    : random.randint(1, 5),
             'displacement_deflection_ratio' : random.randint(3, 10),
@@ -243,4 +254,5 @@ class Curve_generator:
                 curve_parameters,
             )
 
+        # print(f"type (Last curve point  from curvedict): {type(curvedict['points'][-1])}")
         return curvedict

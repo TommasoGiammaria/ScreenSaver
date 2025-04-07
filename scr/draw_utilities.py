@@ -45,6 +45,7 @@ class Curve_drawer:
         draw a single (straight) segment
         """
         self.segment_counter += 1
+        # print(type(points[0]), type(points[1]))
         self.tracked_length += math.sqrt((points[1].x - points[0].x)**2 + (points[1].y - points[0].y)**2)
         if segment_params['line_width'] == 1:
             pygame.draw.aaline(screen, segment_params['color'], points[0], points[1])
