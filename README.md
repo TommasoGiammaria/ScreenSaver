@@ -11,3 +11,6 @@ curve_utils handles curve generation, producing a tuple of vector2 points, while
 Two possible operations:
 - standard (already present) screen saver which stops when mouse is moved
 - keyboard control to change curve generation parameters
+
+## TO DO
+- fix curve stopping at endpoints (when a curve ends touching the circle)
