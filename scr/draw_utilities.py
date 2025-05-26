@@ -20,6 +20,7 @@ class Curve_drawer:
         'color'         : "white",
         'line_width'    : 1
     }
+
     
     def __init__(
             self,
@@ -27,6 +28,7 @@ class Curve_drawer:
         self.segment_counter = 0
         self.tracked_length = 0
 
+    
     def reset(self):
         """
         Reset the curve drawer
