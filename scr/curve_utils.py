@@ -39,7 +39,8 @@ def point_in_circle(
     return the coordinates of a point inside a circle given the center, the radius and the angle.
     This would be the polar coordinates of the point (i.e. the inverse transformation w.r.t. the previous function)
     """
-    
+
+            
     # print(f'Point in circle:\nCenter = {center},next point = {center + Vector2.from_polar((radius, -angle))}')
     return center + Vector2.from_polar((radius, -angle))
 
