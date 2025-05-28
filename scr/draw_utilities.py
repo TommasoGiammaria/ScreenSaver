@@ -55,7 +55,6 @@ class Curve_drawer:
             pygame.draw.line(screen, segment_params['color'], points[0], points[1], width = segment_params['line_width'])
 
 
-
     def draw_curve(
             self,
             points : Tuple[Vector2] = (Vector2(0, 0), Vector2(1, 1), Vector2(2, 2)),
