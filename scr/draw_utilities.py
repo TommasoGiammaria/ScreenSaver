@@ -5,7 +5,7 @@ from typing import Dict, List, Tuple, Union
 from pygame import Vector2
 
 """
-This module contains simple functions to draw curves with pygame.
+This module contains simple functions to draw curves with the pygame module.
 The curves are tuples of points, and the curves are drawn as straight lines between the points.
 The class is meant to be used with the tuples of points created with the Curve_generator class.
 """
