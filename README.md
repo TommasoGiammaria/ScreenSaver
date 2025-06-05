@@ -1,5 +1,5 @@
 # SCREEN SAVER
---.UNDER DEVELOPMENT.--
+-.UNDER DEVELOPMENT.-
 
 ## description
 Idea for a game with lines inside a circular field (for now it's just a screen saver)
