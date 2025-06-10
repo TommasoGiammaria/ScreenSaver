@@ -10,6 +10,7 @@ The curves can be of three different types (0, 1, 2).
 The program can be used to generate random patterns that can be used as background for other projects.
 """
 
+
 def rad_to_deg(angle : float = math.pi) -> float: return (angle*180)/math.pi
 
 
