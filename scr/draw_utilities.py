@@ -11,7 +11,6 @@ The class is meant to be used with the tuples of points created with the Curve_g
 """
 
 
-
 class Curve_drawer:
     """
     Class to draw curves inside a circle
