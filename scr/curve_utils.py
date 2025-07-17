@@ -42,7 +42,8 @@ def point_in_circle(
 
             
     # print(f'Point in circle:\nCenter = {center},next point = {center + Vector2.from_polar((radius, -angle))}')
-    return center + Vector2.from_polar((radius, -angle))
+    newpoint = center + Vector2.from_polar((radius, -angle))
+    return Vector2(int(round(newpoint.x)), int(round(newpoint.y)))
 
 
 def isin_circle(
@@ -68,8 +69,8 @@ class Curve_generator:
     }
     default_circle_params = {
         'deflection'                    : 1,
-        'displacement_deflection_ratio' : 2,
-        'n_steps'                       : 2
+        'displacement_deflection_ratio' : 3,
+        'n_steps'                       : 10
     }
     default_ellipse_params = {
         'max_deflection'        : 1,

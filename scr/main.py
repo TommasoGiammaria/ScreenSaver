@@ -276,7 +276,7 @@ class Game_engine:
 
             # print(f"type(starting point main loop 3) : {type(starting_point)}")
 
-            endpoint = self.generate_single_curve(randomgen = True)
+            endpoint = self.generate_single_curve(randomgen = False, name = 'circle')
             
             # print(f"type(endpoint main loop) : {type(endpoint)}")
 
